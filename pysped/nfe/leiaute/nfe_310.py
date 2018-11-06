@@ -586,8 +586,8 @@ class ICMS(nfe_200.ICMS):
                     xml += self.vICMSST.xml
                 else:
                     xml += self.modBC.xml
-                    xml += self.vBC.xml
                     xml += self.pRedBC.xml
+                    xml += self.vBC.xml
                     xml += self.pICMS.xml
                     xml += self.vICMS.xml
                     xml += self.modBCST.xml
@@ -646,8 +646,8 @@ class ICMS(nfe_200.ICMS):
 
             elif self.CST.valor == '70':
                 xml += self.modBC.xml
-                xml += self.vBC.xml
                 xml += self.pRedBC.xml
+                xml += self.vBC.xml
                 xml += self.pICMS.xml
                 xml += self.vICMS.xml
                 xml += self.modBCST.xml
@@ -665,8 +665,8 @@ class ICMS(nfe_200.ICMS):
 
             elif self.CST.valor == '90':
                 xml += self.modBC.xml
-                xml += self.vBC.xml
                 xml += self.pRedBC.xml
+                xml += self.vBC.xml
                 xml += self.pICMS.xml
                 xml += self.vICMS.xml
                 xml += self.modBCST.xml
@@ -729,8 +729,8 @@ class ICMS(nfe_200.ICMS):
 
             elif self.CSOSN.valor == '900':
                 xml += self.modBC.xml
-                xml += self.vBC.xml
                 xml += self.pRedBC.xml
+                xml += self.vBC.xml
                 xml += self.pICMS.xml
                 xml += self.vICMS.xml
                 xml += self.modBCST.xml
@@ -2191,7 +2191,7 @@ class NFe(nfe_200.NFe):
     def serie_formatada(self):
         if str(self.infNFe.ide.mod.valor) == '65':
             return 'Série ' + str(self.infNFe.ide.serie.valor).zfill(3)
-        elif str(self.infNFe.ide.mod.valor) == '65':
+        elif str(self.infNFe.ide.mod.valor) == '55':
             return 'SÉRIE ' + str(self.infNFe.ide.serie.valor).zfill(3)
         else:
             return str(self.infNFe.ide.serie.valor).zfill(3)

@@ -4007,7 +4007,7 @@ class NFe(XMLNFe):
     def gera_nova_chave(self):
         chave = str(self.infNFe.ide.cUF.valor).zfill(2)
 
-        if str(self.infNFe.versao.valor) == '3.10':
+        if str(self.infNFe.versao.valor) in ('3.10', '4.00'):
             chave += str(self.infNFe.ide.dhEmi.valor.strftime('%y%m')).zfill(4)
 
         else:

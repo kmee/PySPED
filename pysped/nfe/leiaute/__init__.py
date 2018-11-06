@@ -330,7 +330,7 @@ from .consstatserv_310 import RetConsStatServ as RetConsStatServ_310
 #
 # Versão 4.00, usada a partir de agosto/2017
 #
-ESQUEMA_ATUAL_VERSAO_4 = 'pl_009_v4'
+ESQUEMA_ATUAL_VERSAO_4 = 'pl_009_v4b'
 
 #
 # Emissão de NFC-e
@@ -363,6 +363,7 @@ from .nfe_400 import ObsFisco as ObsFisco_400
 from .nfe_400 import ProcRef as ProcRef_400
 from .nfe_400 import AutXML as AutXML_400
 from .nfe_400 import Rastro as Rastro_400
+from .nfe_400 import Fat as Fat_400
 
 #
 # Envio de lote de NF-e

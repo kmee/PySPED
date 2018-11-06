@@ -497,7 +497,7 @@ class ProcessadorNFe(object):
                 arq.write(n.xml)
                 arq.close
 
-            arq = open(self.caminho + str(envio.idLote.valor).strip().rjust(15, '0') + '-env-lot.xml', 'w')
+            arq = open(self.caminho + str(envio.idLote.valor).strip().rjust(15, '0') + '-env-lot.xml', 'w', encoding='utf-8')
             arq.write(envio.xml)
             arq.close()
 
