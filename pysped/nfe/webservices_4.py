@@ -187,13 +187,17 @@ AN = {
     NFE_AMBIENTE_PRODUCAO: {
         'servidor'                : 'www.nfe.fazenda.gov.br',
         'servidor%s' % WS_DFE_DISTRIBUICAO: 'www1.nfe.fazenda.gov.br',
-        WS_NFE_RECEPCAO_EVENTO    : 'NFeRecepcaoEvento4/NFeRecepcaoEvento4.asmx',
-        WS_DFE_DISTRIBUICAO       : 'NFeDistribuicaoDFe/NFeDistribuicaoDFe.asmx',
+        WS_NFE_RECEPCAO_EVENTO: 'NFeRecepcaoEvento4/NFeRecepcaoEvento4.asmx',
+        WS_NFE_CONSULTA_DESTINADAS: 'NFeConsultaDest/NFeConsultaDest.asmx',
+        WS_NFE_DOWNLOAD: 'NfeDownloadNF/NfeDownloadNF.asmx',
+        WS_DFE_DISTRIBUICAO: 'NFeDistribuicaoDFe/NFeDistribuicaoDFe.asmx',
     },
     NFE_AMBIENTE_HOMOLOGACAO: {
-        'servidor'                : 'hom.nfe.fazenda.gov.br',
-        WS_NFE_RECEPCAO_EVENTO    : 'NFeRecepcaoEvento4/NFeRecepcaoEvento4.asmx',
-        WS_DFE_DISTRIBUICAO       : 'NFeDistribuicaoDFe/NFeDistribuicaoDFe.asmx',
+        'servidor': 'hom.nfe.fazenda.gov.br',
+        WS_NFE_RECEPCAO_EVENTO: 'NFeRecepcaoEvento4/NFeRecepcaoEvento4.asmx',
+        WS_NFE_CONSULTA_DESTINADAS: 'NFeConsultaDest/NFeConsultaDest.asmx',
+        WS_NFE_DOWNLOAD: 'NfeDownloadNF/NfeDownloadNF.asmx',
+        WS_DFE_DISTRIBUICAO: 'NFeDistribuicaoDFe/NFeDistribuicaoDFe.asmx',
     },
 }
 
