@@ -47,7 +47,6 @@ setup(
     long_description = open('README.rst').read(),
     install_requires=[
         'Geraldo >= 0.4.16',
-        'PyXMLSec >= 0.3.0'
     ],
     tests_require=[
         'pyflakes>=0.6.1',
