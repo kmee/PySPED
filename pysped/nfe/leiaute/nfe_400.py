@@ -277,7 +277,7 @@ class ICMS(nfe_310.ICMS):
     def __init__(self):
         super(ICMS, self).__init__()
 
-        self.pST  = TagDecimal(nome='pST'               , codigo='', tamanho=[1,  3, 1], decimais=[0, 2, 4], raiz='', obrigatorio=False)
+        self.pST = TagDecimal(nome='pST'               , codigo='', tamanho=[1,  3, 1], decimais=[0, 2, 4], raiz='', obrigatorio=False)
         self.vBCFCP = TagDecimal(nome='vBCFCP'          , codigo='', tamanho=[1, 13, 1], decimais=[0, 2, 2], raiz='', obrigatorio=False)
         self.pFCP = TagDecimal(nome='pFCP'              , codigo='', tamanho=[1,  3, 1], decimais=[0, 2, 4], raiz='', obrigatorio=False)
         self.vFCP = TagDecimal(nome='vFCP'              , codigo='', tamanho=[1, 13, 1], decimais=[0, 2, 2], raiz='', obrigatorio=False)
@@ -287,6 +287,10 @@ class ICMS(nfe_310.ICMS):
         self.vBCFCPSTRet = TagDecimal(nome='vBCFCPSTRet', codigo='', tamanho=[1, 13, 1], decimais=[0, 2, 2], raiz='', obrigatorio=False)
         self.pFCPSTRet = TagDecimal(nome='pFCPSTRet'    , codigo='', tamanho=[1,  3, 1], decimais=[0, 2, 4], raiz='', obrigatorio=False)
         self.vFCPSTRet = TagDecimal(nome='vFCPSTRet'    , codigo='', tamanho=[1, 13, 1], decimais=[0, 2, 2], raiz='', obrigatorio=False)
+        self.pRedBCEfet = TagDecimal(nome='pRedBCEfet', codigo='', tamanho=[1, 3, 1], decimais=[0, 2, 4], raiz='')
+        self.vBCEfet = TagDecimal(nome='vBCEfet'    , codigo='', tamanho=[1, 13, 1], decimais=[0, 2, 2], raiz='')
+        self.pICMSEfet = TagDecimal(nome='pICMSEfet', codigo='', tamanho=[1, 3, 1], decimais=[0, 2, 4], raiz='')
+        self.vICMSEfet = TagDecimal(nome='vICMSEfet'    , codigo='', tamanho=[1, 13, 1], decimais=[0, 2, 2], raiz='')
         self.orig = TagCaracter(nome='orig', codigo='', raiz='')
 
         #
@@ -433,6 +437,12 @@ class ICMS(nfe_310.ICMS):
                     xml += self.vBCFCPSTRet.xml
                     xml += self.pFCPSTRet.xml
                     xml += self.vFCPSTRet.xml
+
+                if (self.pRedBCEfet.valor or self.vBCEfet.valor or self.pICMSEfet.valor or self.vICMSEfet.valor):
+                    xml += self.pRedBCEfet.xml
+                    xml += self.vBCEfet.xml
+                    xml += self.pICMSEfet.xml
+                    xml += self.vICMSEfet.xml
 
             elif self.CST.valor == '70':
                 xml += self.modBC.xml
@@ -680,6 +690,10 @@ class ICMS(nfe_310.ICMS):
             self.pFCPSTRet.xml  = arquivo
             self.vFCPSTRet.xml  = arquivo
             self.vICMSDeson.xml = arquivo
+            self.pRedBCEfet.xml = arquivo
+            self.vBCEfet.xml = arquivo
+            self.pICMSEfet.xml = arquivo
+            self.vICMSEfet.xml = arquivo
             self.vICMSOp.xml    = arquivo
             self.pDif.xml       = arquivo
             self.vICMSDif.xml   = arquivo
