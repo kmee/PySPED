@@ -278,6 +278,7 @@ class ICMS(nfe_310.ICMS):
         super(ICMS, self).__init__()
 
         self.pST  = TagDecimal(nome='pST'               , codigo='', tamanho=[1,  3, 1], decimais=[0, 2, 4], raiz='', obrigatorio=False)
+        self.vICMSSubstituto = TagDecimal(nome='vICMSSubstituto'          , codigo='', tamanho=[1, 13, 1], decimais=[0, 2, 2], raiz='', obrigatorio=False)
         self.vBCFCP = TagDecimal(nome='vBCFCP'          , codigo='', tamanho=[1, 13, 1], decimais=[0, 2, 2], raiz='', obrigatorio=False)
         self.pFCP = TagDecimal(nome='pFCP'              , codigo='', tamanho=[1,  3, 1], decimais=[0, 2, 4], raiz='', obrigatorio=False)
         self.vFCP = TagDecimal(nome='vFCP'              , codigo='', tamanho=[1, 13, 1], decimais=[0, 2, 2], raiz='', obrigatorio=False)
@@ -424,9 +425,10 @@ class ICMS(nfe_310.ICMS):
                     xml += self.vFCP.xml
 
             elif self.CST.valor == '60':
-                if (self.vBCSTRet.valor or self.pST.valor or self.vICMSSTRet.valor):
+                if (self.vBCSTRet.valor or self.pST.valor or self.vICMSSTRet.valor or self.vICMSSubstituto.valor):
                     xml += self.vBCSTRet.xml
                     xml += self.pST.xml
+                    xml += self.vICMSSubstituto.xml
                     xml += self.vICMSSTRet.xml
 
                 if (self.vBCFCPSTRet.valor or self.pFCPSTRet.valor or self.vFCPSTRet.valor):
