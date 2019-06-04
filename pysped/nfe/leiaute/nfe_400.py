@@ -1575,7 +1575,6 @@ class InfRespTec(XMLNFe):
             self.CNPJ.xml = arquivo
             self.xContato.xml = arquivo
             self.email.xml = arquivo
-            self.emit.xml = arquivo
             self.fone.xml = arquivo
             self.idCSRT.xml = arquivo
             self.hashCSRT.xml = arquivo
