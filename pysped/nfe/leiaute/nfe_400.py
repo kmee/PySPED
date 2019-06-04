@@ -1405,6 +1405,7 @@ class InfNFe(nfe_310.InfNFe):
         self.exporta  = Exporta()
         self.compra   = Compra()
         self.cana     = Cana()
+        self.infresptec = InfRespTec()
 
     def get_xml(self):
         xml = XMLNFe.get_xml(self)
@@ -1437,6 +1438,7 @@ class InfNFe(nfe_310.InfNFe):
         xml += self.exporta.xml
         xml += self.compra.xml
         xml += self.cana.xml
+        xml += self.infresptec.xml
         xml += '</infNFe>'
         return xml
 
@@ -1478,6 +1480,7 @@ class InfNFe(nfe_310.InfNFe):
             self.exporta.xml  = arquivo
             self.compra.xml   = arquivo
             self.cana.xml     = arquivo
+            self.infresptec.xml = arquivo
 
     xml = property(get_xml, set_xml)
 
@@ -1542,3 +1545,39 @@ class NFSe(NFe):
         self.infNFe.ide.indFinal.valor = '1'  #  Consumidor final
         self.infNFe.transp.modFrete.valor = 9  #  Sem frete
         self.infNFe.dest.modelo = '99'
+
+
+class InfRespTec(XMLNFe):
+    def __init__(self):
+        super(InfRespTec, self).__init__()
+        self.CNPJ = TagCaracter(nome='CNPJ', codigo='ZD02', tamanho=[14, 14], raiz='//NFe/infNFe/infRespTec', obrigatorio=True)
+        self.xContato = TagCaracter(nome='xContato', codigo='ZD04', tamanho=[2, 60], raiz='//NFe/infNFe/infRespTec', obrigatorio=True)
+        self.email = TagCaracter(nome='email', codigo='ZD05', tamanho=[2,  60], raiz='//NFe/infNFe/infRespTec', obrigatorio=True)
+        self.fone = TagInteiro(nome='fone', codigo='ZD06', tamanho=[6, 14], raiz='//NFe/infNFe/infRespTec', obrigatorio=True)
+        self.idCSRT = TagInteiro(nome='idCSRT', codigo='ZD08', tamanho=[2, 2], raiz='//NFe/infNFe/infRespTec', obrigatorio=True)
+        self.hashCSRT = TagCaracter(nome='hashCSRT', codigo='ZD09', tamanho=[28, 28], raiz='//NFe/infNFe/infRespTec', obrigatorio=True)
+
+    def get_xml(self):
+
+        xml = XMLNFe.get_xml(self)
+        xml += '<infRespTec>'
+        xml += self.CNPJ.xml
+        xml += self.xContato.xml
+        xml += self.email.xml
+        xml += self.fone.xml
+        xml += self.idCSRT.xml
+        xml += self.hashCSRT.xml
+        xml += '</infRespTec>'
+        return xml
+
+    def set_xml(self, arquivo):
+        if self._le_xml(arquivo):
+            self.CNPJ.xml = arquivo
+            self.xContato.xml = arquivo
+            self.email.xml = arquivo
+            self.emit.xml = arquivo
+            self.fone.xml = arquivo
+            self.idCSRT.xml = arquivo
+            self.hashCSRT.xml = arquivo
+
+    xml = property(get_xml, set_xml)
