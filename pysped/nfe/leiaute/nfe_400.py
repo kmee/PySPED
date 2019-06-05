@@ -1578,8 +1578,8 @@ class InfRespTec(XMLNFe):
         self.xContato = TagCaracter(nome='xContato', codigo='ZD04', tamanho=[2, 60], raiz='//NFe/infNFe/infRespTec', obrigatorio=True)
         self.email = TagCaracter(nome='email', codigo='ZD05', tamanho=[2,  60], raiz='//NFe/infNFe/infRespTec', obrigatorio=True)
         self.fone = TagInteiro(nome='fone', codigo='ZD06', tamanho=[6, 14], raiz='//NFe/infNFe/infRespTec', obrigatorio=True)
-        self.idCSRT = TagInteiro(nome='idCSRT', codigo='ZD08', tamanho=[2, 2], raiz='//NFe/infNFe/infRespTec', obrigatorio=True)
-        self.hashCSRT = TagCaracter(nome='hashCSRT', codigo='ZD09', tamanho=[28, 28], raiz='//NFe/infNFe/infRespTec', obrigatorio=True)
+        self.idCSRT = TagInteiro(nome='idCSRT', codigo='ZD08', tamanho=[2, 2], raiz='//NFe/infNFe/infRespTec', obrigatorio=False)
+        self.hashCSRT = TagCaracter(nome='hashCSRT', codigo='ZD09', tamanho=[28, 28], raiz='//NFe/infNFe/infRespTec', obrigatorio=False)
 
     def get_xml(self):
 
