@@ -785,6 +785,7 @@ class Adi(nfe_310.Adi):
 class DI(nfe_310.DI):
     def __init__(self):
         super(DI, self).__init__()
+        self.nDI         = TagCaracter(nome='nDI'        , codigo='I19', tamanho=[1, 20], raiz='//DI')
 
 
 class Rastro(XMLNFe):
@@ -1525,6 +1526,31 @@ class NFe(nfe_310.NFe):
             self.infNFe.xml     = arquivo
             self.infNFeSupl.xml = arquivo
             self.Signature.xml  = self._le_noh('//NFe/sig:Signature')
+
+    @property
+    def frete_formatado(self):
+        if self.infNFe.transp.modFrete.valor == 0:
+            formatado = '0-do Remetente CIF'
+
+        elif self.infNFe.transp.modFrete.valor == 1:
+            formatado = '1-do Destinatário FOB'
+
+        elif self.infNFe.transp.modFrete.valor == 2:
+            formatado = '2-de Terceiros'
+
+        elif self.infNFe.transp.modFrete.valor == 3:
+            formatado = '3-do Remetente'
+
+        elif self.infNFe.transp.modFrete.valor == 4:
+            formatado = '4-do Destinatario'
+
+        elif self.infNFe.transp.modFrete.valor == 9:
+            formatado = '9-sem frete'
+
+        else:
+            formatado = ''
+
+        return formatado
 
     xml = property(get_xml, set_xml)
 
