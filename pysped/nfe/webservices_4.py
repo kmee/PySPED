@@ -46,7 +46,7 @@ from .webservices_flags import *
 
 METODO_WS = {
     WS_NFE_INUTILIZACAO: {
-        'webservice': 'NFeInutilizacao4',
+        'webservice': 'NfeInutilizacao4',
         'metodo'    : 'nfeInutilizacaoNF',
     },
     WS_NFE_CONSULTA: {
@@ -58,8 +58,8 @@ METODO_WS = {
         'metodo'    : 'nfeStatusServicoNF',
     },
     WS_NFE_CONSULTA_CADASTRO: {
-        'webservice': 'CadConsultaCadastro4',
-        'metodo'    : 'consultaCadastro2',
+        'webservice': 'NfeConsultaCadastro',
+        'metodo'    : 'consultaCadastro',
     },
     WS_NFE_RECEPCAO_EVENTO: {
         'webservice': 'NFeRecepcaoEvento4',

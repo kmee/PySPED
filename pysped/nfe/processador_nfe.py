@@ -190,10 +190,10 @@ class ConexaoHTTPS(HTTPSConnection):
             self.sock = sock
             self._tunnel()
 
-        if sys.version_info >= (2,7,13):
-            self.sock = ssl.wrap_socket(sock, self.key_file, self.cert_file, ssl_version=ssl.PROTOCOL_TLS, do_handshake_on_connect=False)
-        else:
+        if sys.version_info.major == 2:
             self.sock = ssl.wrap_socket(sock, self.key_file, self.cert_file, ssl_version=ssl.PROTOCOL_TLSv1_2, do_handshake_on_connect=False)
+        else:
+            self.sock = ssl.wrap_socket(sock, self.key_file, self.cert_file, ssl_version=ssl.PROTOCOL_TLS, do_handshake_on_connect=False)
 
 
 class ProcessadorNFe(object):
