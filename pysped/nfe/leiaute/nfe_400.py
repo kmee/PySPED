@@ -429,11 +429,12 @@ class ICMS(nfe_310.ICMS):
                     xml += self.vFCP.xml
 
             elif self.CST.valor == '60':
-                if (self.vBCSTRet.valor or self.pST.valor or self.vICMSSTRet.valor or self.vICMSSubstituto.valor):
-                    xml += self.vBCSTRet.xml
-                    xml += self.pST.xml
-                    xml += self.vICMSSubstituto.xml
-                    xml += self.vICMSSTRet.xml
+                # if (self.vBCSTRet.valor or self.pST.valor or self.vICMSSTRet.valor or self.vICMSSubstituto.valor):
+                xml += self.vBCSTRet.xml
+                self.pST.obrigatorio = True
+                xml += self.pST.xml
+                xml += self.vICMSSubstituto.xml
+                xml += self.vICMSSTRet.xml
 
                 if (self.vBCFCPSTRet.valor or self.pFCPSTRet.valor or self.vFCPSTRet.valor):
                     xml += self.vBCFCPSTRet.xml
@@ -557,11 +558,12 @@ class ICMS(nfe_310.ICMS):
                     xml += self.vFCPST.xml
 
             elif self.CSOSN.valor == '500':
-                if (self.vBCSTRet.valor or self.pST.valor or self.vICMSSTRet.valor):
-                    xml += self.vBCSTRet.xml
-                    xml += self.pST.xml
-                    xml += self.vICMSSubstituto.xml
-                    xml += self.vICMSSTRet.xml
+                # if (self.vBCSTRet.valor or self.pST.valor or self.vICMSSTRet.valor):
+                xml += self.vBCSTRet.xml
+                self.pST.obrigatorio = True
+                xml += self.pST.xml
+                xml += self.vICMSSubstituto.xml
+                xml += self.vICMSSTRet.xml
 
                 if (self.vBCFCPSTRet.valor or self.pFCPSTRet.valor or self.vFCPSTRet.valor):
                     xml += self.vBCFCPSTRet.xml
