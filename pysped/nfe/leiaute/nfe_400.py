@@ -85,7 +85,7 @@ class ISSQN(nfe_310.ISSQN):
 class ICMSUFDest(nfe_310.ICMSUFDest):
     def __init__(self):
         super(ICMSUFDest, self).__init__()
-        self.vBCFCPUFDest = TagDecimal(nome='vBCFCPUFDest', codigo='', tamanho=[1, 13, 1], decimais=[0, 2, 2], raiz='//det/imposto/ICMSUFDest')
+        self.vBCFCPUFDest = TagDecimal(nome='vBCFCPUFDest', codigo='', tamanho=[1, 13, 1], decimais=[0, 2, 2], raiz='//det/imposto/ICMSUFDest', obrigatorio=False)
 
     def get_xml(self):
         if not (self.vBCUFDest.valor):
@@ -171,25 +171,137 @@ class TagCSOSN(nfe_310.TagCSOSN):
     def __init__(self, *args, **kwargs):
         super(TagCSOSN, self).__init__(*args, **kwargs)
 
+    def set_valor(self, novo_valor):
+        super(TagCSOSN, self).set_valor(novo_valor)
+
+        if not self.grupo_icms:
+            return None
+
+        #
+        # Definimos todas as tags como não obrigatórias
+        #
+        self.grupo_icms.pST.obrigatorio         = False
+        self.grupo_icms.vBCFCP.obrigatorio      = False
+        self.grupo_icms.pFCP.obrigatorio        = False
+        self.grupo_icms.vFCP.obrigatorio        = False
+        self.grupo_icms.vBCFCPST.obrigatorio    = False
+        self.grupo_icms.pFCPST.obrigatorio      = False
+        self.grupo_icms.vFCPST.obrigatorio      = False
+        self.grupo_icms.vBCFCPSTRet.obrigatorio = False
+        self.grupo_icms.pFCPSTRet.obrigatorio   = False
+        self.grupo_icms.vFCPSTRet.obrigatorio   = False
+
+        #
+        # Por segurança, zeramos os valores das tags do
+        # grupo ICMS ao redefinirmos o código da situação
+        # tributária
+        #
+        self.grupo_icms.pST.valor         = '0.00'
+        self.grupo_icms.vBCFCP.valor      = '0.00'
+        self.grupo_icms.pFCP.valor        = '0.00'
+        self.grupo_icms.vFCP.valor        = '0.00'
+        self.grupo_icms.vBCFCPST.valor    = '0.00'
+        self.grupo_icms.pFCPST.valor      = '0.00'
+        self.grupo_icms.vFCPST.valor      = '0.00'
+        self.grupo_icms.vBCFCPSTRet.valor = '0.00'
+        self.grupo_icms.pFCPSTRet.valor   = '0.00'
+        self.grupo_icms.vFCPSTRet.valor   = '0.00'
+
+        #
+        # Redefine a raiz para todas as tags do grupo ICMS
+        #
+        self.grupo_icms.pST.raiz         = self.grupo_icms.raiz_tag
+        self.grupo_icms.vBCFCP.raiz      = self.grupo_icms.raiz_tag
+        self.grupo_icms.pFCP.raiz        = self.grupo_icms.raiz_tag
+        self.grupo_icms.vFCP.raiz        = self.grupo_icms.raiz_tag
+        self.grupo_icms.vBCFCPST.raiz    = self.grupo_icms.raiz_tag
+        self.grupo_icms.pFCPST.raiz      = self.grupo_icms.raiz_tag
+        self.grupo_icms.vFCPST.raiz      = self.grupo_icms.raiz_tag
+        self.grupo_icms.vBCFCPSTRet.raiz = self.grupo_icms.raiz_tag
+        self.grupo_icms.pFCPSTRet.raiz   = self.grupo_icms.raiz_tag
+        self.grupo_icms.vFCPSTRet.raiz   = self.grupo_icms.raiz_tag
+
 
 class TagCSTICMS(nfe_310.TagCSTICMS):
     def __init__(self, *args, **kwargs):
         super(TagCSTICMS, self).__init__(*args, **kwargs)
 
+    def set_valor(self, novo_valor):
+        super(TagCSTICMS, self).set_valor(novo_valor)
+        if not self.grupo_icms:
+            return None
+         #
+        # Definimos todas as tags como não obrigatórias
+        #
+        self.grupo_icms.pST.obrigatorio         = False
+        self.grupo_icms.vBCFCP.obrigatorio      = False
+        self.grupo_icms.pFCP.obrigatorio        = False
+        self.grupo_icms.vFCP.obrigatorio        = False
+        self.grupo_icms.vBCFCPST.obrigatorio    = False
+        self.grupo_icms.pFCPST.obrigatorio      = False
+        self.grupo_icms.vFCPST.obrigatorio      = False
+        self.grupo_icms.vBCFCPSTRet.obrigatorio = False
+        self.grupo_icms.pFCPSTRet.obrigatorio   = False
+        self.grupo_icms.vFCPSTRet.obrigatorio   = False
+         #
+        # Por segurança, zeramos os valores das tags do
+        # grupo ICMS ao redefinirmos o código da situação
+        # tributária
+        #
+        self.grupo_icms.pST.valor         = '0.00'
+        self.grupo_icms.vBCFCP.valor      = '0.00'
+        self.grupo_icms.pFCP.valor        = '0.00'
+        self.grupo_icms.vFCP.valor        = '0.00'
+        self.grupo_icms.vBCFCPST.valor    = '0.00'
+        self.grupo_icms.pFCPST.valor      = '0.00'
+        self.grupo_icms.vFCPST.valor      = '0.00'
+        self.grupo_icms.vBCFCPSTRet.valor = '0.00'
+        self.grupo_icms.pFCPSTRet.valor   = '0.00'
+        self.grupo_icms.vFCPSTRet.valor   = '0.00'
+         #
+        # Redefine a raiz para todas as tags do grupo ICMS
+        #
+        self.grupo_icms.pST.raiz         = self.grupo_icms.raiz_tag
+        self.grupo_icms.vBCFCP.raiz      = self.grupo_icms.raiz_tag
+        self.grupo_icms.pFCP.raiz        = self.grupo_icms.raiz_tag
+        self.grupo_icms.vFCP.raiz        = self.grupo_icms.raiz_tag
+        self.grupo_icms.vBCFCPST.raiz    = self.grupo_icms.raiz_tag
+        self.grupo_icms.pFCPST.raiz      = self.grupo_icms.raiz_tag
+        self.grupo_icms.vFCPST.raiz      = self.grupo_icms.raiz_tag
+        self.grupo_icms.vBCFCPSTRet.raiz = self.grupo_icms.raiz_tag
+        self.grupo_icms.pFCPSTRet.raiz   = self.grupo_icms.raiz_tag
+        self.grupo_icms.vFCPSTRet.raiz   = self.grupo_icms.raiz_tag
+
+        self.grupo_icms.pRedBCEfet.raiz   = self.grupo_icms.raiz_tag
+        self.grupo_icms.vBCEfet.raiz   = self.grupo_icms.raiz_tag
+        self.grupo_icms.pICMSEfet.raiz   = self.grupo_icms.raiz_tag
+        self.grupo_icms.vICMSEfet.raiz   = self.grupo_icms.raiz_tag
+
+    def get_valor(self):
+        return self._valor_string
+
+    valor = property(get_valor, set_valor)
+
 
 class ICMS(nfe_310.ICMS):
     def __init__(self):
         super(ICMS, self).__init__()
-        self.pST  = TagDecimal(nome='pST'               , codigo='', tamanho=[1,  3, 1], decimais=[0, 2, 4], raiz='')
-        self.vBCFCP = TagDecimal(nome='vBCFCP'          , codigo='', tamanho=[1, 13, 1], decimais=[0, 2, 2], raiz='')
-        self.pFCP = TagDecimal(nome='pFCP'              , codigo='', tamanho=[1,  3, 1], decimais=[0, 2, 4], raiz='')
-        self.vFCP = TagDecimal(nome='vFCP'              , codigo='', tamanho=[1, 13, 1], decimais=[0, 2, 2], raiz='')
-        self.vBCFCPST = TagDecimal(nome='vBCFCPST'      , codigo='', tamanho=[1, 13, 1], decimais=[0, 2, 2], raiz='')
-        self.pFCPST = TagDecimal(nome='pFCPST'          , codigo='', tamanho=[1,  3, 1], decimais=[0, 2, 4], raiz='')
-        self.vFCPST = TagDecimal(nome='vFCPST'          , codigo='', tamanho=[1, 13, 1], decimais=[0, 2, 2], raiz='')
-        self.vBCFCPSTRet = TagDecimal(nome='vBCFCPSTRet', codigo='', tamanho=[1, 13, 1], decimais=[0, 2, 2], raiz='')
-        self.pFCPSTRet = TagDecimal(nome='pFCPSTRet'    , codigo='', tamanho=[1,  3, 1], decimais=[0, 2, 4], raiz='')
-        self.vFCPSTRet = TagDecimal(nome='vFCPSTRet'    , codigo='', tamanho=[1, 13, 1], decimais=[0, 2, 2], raiz='')
+
+        self.pST = TagDecimal(nome='pST'               , codigo='', tamanho=[1,  3, 1], decimais=[0, 2, 4], raiz='', obrigatorio=False)
+        self.vICMSSubstituto = TagDecimal(nome='vICMSSubstituto'          , codigo='', tamanho=[1, 13, 1], decimais=[0, 2, 2], raiz='', obrigatorio=True)
+        self.vBCFCP = TagDecimal(nome='vBCFCP'          , codigo='', tamanho=[1, 13, 1], decimais=[0, 2, 2], raiz='', obrigatorio=False)
+        self.pFCP = TagDecimal(nome='pFCP'              , codigo='', tamanho=[1,  3, 1], decimais=[0, 2, 4], raiz='', obrigatorio=False)
+        self.vFCP = TagDecimal(nome='vFCP'              , codigo='', tamanho=[1, 13, 1], decimais=[0, 2, 2], raiz='', obrigatorio=False)
+        self.vBCFCPST = TagDecimal(nome='vBCFCPST'      , codigo='', tamanho=[1, 13, 1], decimais=[0, 2, 2], raiz='', obrigatorio=False)
+        self.pFCPST = TagDecimal(nome='pFCPST'          , codigo='', tamanho=[1,  3, 1], decimais=[0, 2, 4], raiz='', obrigatorio=False)
+        self.vFCPST = TagDecimal(nome='vFCPST'          , codigo='', tamanho=[1, 13, 1], decimais=[0, 2, 2], raiz='', obrigatorio=False)
+        self.vBCFCPSTRet = TagDecimal(nome='vBCFCPSTRet', codigo='', tamanho=[1, 13, 1], decimais=[0, 2, 2], raiz='', obrigatorio=False)
+        self.pFCPSTRet = TagDecimal(nome='pFCPSTRet'    , codigo='', tamanho=[1,  3, 1], decimais=[0, 2, 4], raiz='', obrigatorio=False)
+        self.vFCPSTRet = TagDecimal(nome='vFCPSTRet'    , codigo='', tamanho=[1, 13, 1], decimais=[0, 2, 2], raiz='', obrigatorio=False)
+        self.pRedBCEfet = TagDecimal(nome='pRedBCEfet', codigo='', tamanho=[1, 3, 1], decimais=[0, 4, 2], raiz='')
+        self.vBCEfet = TagDecimal(nome='vBCEfet'    , codigo='', tamanho=[1, 13, 1], decimais=[0, 4, 2], raiz='')
+        self.pICMSEfet = TagDecimal(nome='pICMSEfet', codigo='', tamanho=[1, 3, 1], decimais=[0, 4, 2], raiz='')
+        self.vICMSEfet = TagDecimal(nome='vICMSEfet'    , codigo='', tamanho=[1, 13, 1], decimais=[0, 4, 2], raiz='')
         self.orig = TagCaracter(nome='orig', codigo='', raiz='')
 
         #
@@ -327,15 +439,23 @@ class ICMS(nfe_310.ICMS):
                     xml += self.vFCP.xml
 
             elif self.CST.valor == '60':
-                if (self.vBCSTRet.valor or self.pST.valor or self.vICMSSTRet.valor):
-                    xml += self.vBCSTRet.xml
-                    xml += self.pST.xml
-                    xml += self.vICMSSTRet.xml
+                # if (self.vBCSTRet.valor or self.pST.valor or self.vICMSSTRet.valor or self.vICMSSubstituto.valor):
+                xml += self.vBCSTRet.xml
+                self.pST.obrigatorio = True
+                xml += self.pST.xml
+                xml += self.vICMSSubstituto.xml
+                xml += self.vICMSSTRet.xml
 
                 if (self.vBCFCPSTRet.valor or self.pFCPSTRet.valor or self.vFCPSTRet.valor):
                     xml += self.vBCFCPSTRet.xml
                     xml += self.pFCPSTRet.xml
                     xml += self.vFCPSTRet.xml
+
+                if (self.pRedBCEfet.valor or self.vBCEfet.valor or self.pICMSEfet.valor or self.vICMSEfet.valor):
+                    xml += self.pRedBCEfet.xml
+                    xml += self.vBCEfet.xml
+                    xml += self.pICMSEfet.xml
+                    xml += self.vICMSEfet.xml
 
             elif self.CST.valor == '70':
                 xml += self.modBC.xml
@@ -448,13 +568,17 @@ class ICMS(nfe_310.ICMS):
                     xml += self.vFCPST.xml
 
             elif self.CSOSN.valor == '500':
+                # if (self.vBCSTRet.valor or self.pST.valor or self.vICMSSTRet.valor):
                 xml += self.vBCSTRet.xml
+                self.pST.obrigatorio = True
+                xml += self.pST.xml
+                xml += self.vICMSSubstituto.xml
                 xml += self.vICMSSTRet.xml
 
-                xml += self.pST.xml
-                xml += self.vBCFCPSTRet.xml
-                xml += self.pFCPSTRet.xml
-                xml += self.vFCPSTRet.xml
+                if (self.vBCFCPSTRet.valor or self.pFCPSTRet.valor or self.vFCPSTRet.valor):
+                    xml += self.vBCFCPSTRet.xml
+                    xml += self.pFCPSTRet.xml
+                    xml += self.vFCPSTRet.xml
 
             elif self.CSOSN.valor == '900':
                 xml += self.modBC.xml
@@ -577,10 +701,15 @@ class ICMS(nfe_310.ICMS):
             self.vBCSTRet.xml   = arquivo
             self.vICMSSTRet.xml = arquivo
             self.pST.xml        = arquivo
+            self.vICMSSubstituto.xml = arquivo
             self.vBCFCPSTRet.xml = arquivo
             self.pFCPSTRet.xml  = arquivo
             self.vFCPSTRet.xml  = arquivo
             self.vICMSDeson.xml = arquivo
+            self.pRedBCEfet.xml = arquivo
+            self.vBCEfet.xml = arquivo
+            self.pICMSEfet.xml = arquivo
+            self.vICMSEfet.xml = arquivo
             self.vICMSOp.xml    = arquivo
             self.pDif.xml       = arquivo
             self.vICMSDif.xml   = arquivo
@@ -602,6 +731,7 @@ class Imposto(nfe_310.Imposto):
     def __init__(self):
         super(Imposto, self).__init__()
         self.ICMS = ICMS()
+        self.ICMSUFDest = ICMSUFDest()
         self.vTotTrib = TagDecimal(nome='vTotTrib', codigo='M02', tamanho=[1, 15, 1], decimais=[0,  2,  2], raiz='//det/imposto', obrigatorio=True)
 
 
@@ -667,6 +797,7 @@ class Adi(nfe_310.Adi):
 class DI(nfe_310.DI):
     def __init__(self):
         super(DI, self).__init__()
+        self.nDI         = TagCaracter(nome='nDI'        , codigo='I19', tamanho=[1, 20], raiz='//DI')
 
 
 class Rastro(XMLNFe):
@@ -1290,6 +1421,7 @@ class InfNFe(nfe_310.InfNFe):
         self.exporta  = Exporta()
         self.compra   = Compra()
         self.cana     = Cana()
+        self.infresptec = InfRespTec()
 
     def get_xml(self):
         xml = XMLNFe.get_xml(self)
@@ -1301,8 +1433,9 @@ class InfNFe(nfe_310.InfNFe):
         xml += self.retirada.xml
         xml += self.entrega.xml
 
-        for a in self.autXML:
-            xml += a.xml
+        if self.emit.CNPJ.valor != self.dest.CNPJ.valor:
+            for a in self.autXML:
+                xml += a.xml
 
         for d in self.det:
             d.imposto.ICMS.regime_tributario = self.emit.CRT.valor
@@ -1321,6 +1454,7 @@ class InfNFe(nfe_310.InfNFe):
         xml += self.exporta.xml
         xml += self.compra.xml
         xml += self.cana.xml
+        xml += self.infresptec.xml
         xml += '</infNFe>'
         return xml
 
@@ -1362,6 +1496,7 @@ class InfNFe(nfe_310.InfNFe):
             self.exporta.xml  = arquivo
             self.compra.xml   = arquivo
             self.cana.xml     = arquivo
+            self.infresptec.xml = arquivo
 
     xml = property(get_xml, set_xml)
 
@@ -1404,6 +1539,31 @@ class NFe(nfe_310.NFe):
             self.infNFeSupl.xml = arquivo
             self.Signature.xml  = self._le_noh('//NFe/sig:Signature')
 
+    @property
+    def frete_formatado(self):
+        if self.infNFe.transp.modFrete.valor == 0:
+            formatado = '0-do Remetente CIF'
+
+        elif self.infNFe.transp.modFrete.valor == 1:
+            formatado = '1-do Destinatário FOB'
+
+        elif self.infNFe.transp.modFrete.valor == 2:
+            formatado = '2-de Terceiros'
+
+        elif self.infNFe.transp.modFrete.valor == 3:
+            formatado = '3-do Remetente'
+
+        elif self.infNFe.transp.modFrete.valor == 4:
+            formatado = '4-do Destinatario'
+
+        elif self.infNFe.transp.modFrete.valor == 9:
+            formatado = '9-sem frete'
+
+        else:
+            formatado = ''
+
+        return formatado
+
     xml = property(get_xml, set_xml)
 
 
@@ -1426,3 +1586,38 @@ class NFSe(NFe):
         self.infNFe.ide.indFinal.valor = '1'  #  Consumidor final
         self.infNFe.transp.modFrete.valor = 9  #  Sem frete
         self.infNFe.dest.modelo = '99'
+
+
+class InfRespTec(XMLNFe):
+    def __init__(self):
+        super(InfRespTec, self).__init__()
+        self.CNPJ = TagCaracter(nome='CNPJ', codigo='ZD02', tamanho=[14, 14], raiz='//NFe/infNFe/infRespTec', obrigatorio=True)
+        self.xContato = TagCaracter(nome='xContato', codigo='ZD04', tamanho=[2, 60], raiz='//NFe/infNFe/infRespTec', obrigatorio=True)
+        self.email = TagCaracter(nome='email', codigo='ZD05', tamanho=[2,  60], raiz='//NFe/infNFe/infRespTec', obrigatorio=True)
+        self.fone = TagInteiro(nome='fone', codigo='ZD06', tamanho=[6, 14], raiz='//NFe/infNFe/infRespTec', obrigatorio=True)
+        self.idCSRT = TagInteiro(nome='idCSRT', codigo='ZD08', tamanho=[2, 2], raiz='//NFe/infNFe/infRespTec', obrigatorio=False)
+        self.hashCSRT = TagCaracter(nome='hashCSRT', codigo='ZD09', tamanho=[28, 28], raiz='//NFe/infNFe/infRespTec', obrigatorio=False)
+
+    def get_xml(self):
+
+        xml = XMLNFe.get_xml(self)
+        xml += '<infRespTec>'
+        xml += self.CNPJ.xml
+        xml += self.xContato.xml
+        xml += self.email.xml
+        xml += self.fone.xml
+        xml += self.idCSRT.xml
+        xml += self.hashCSRT.xml
+        xml += '</infRespTec>'
+        return xml
+
+    def set_xml(self, arquivo):
+        if self._le_xml(arquivo):
+            self.CNPJ.xml = arquivo
+            self.xContato.xml = arquivo
+            self.email.xml = arquivo
+            self.fone.xml = arquivo
+            self.idCSRT.xml = arquivo
+            self.hashCSRT.xml = arquivo
+
+    xml = property(get_xml, set_xml)
