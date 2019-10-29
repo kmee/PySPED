@@ -272,6 +272,16 @@ class TagCSTICMS(nfe_310.TagCSTICMS):
         self.grupo_icms.pFCPSTRet.raiz   = self.grupo_icms.raiz_tag
         self.grupo_icms.vFCPSTRet.raiz   = self.grupo_icms.raiz_tag
 
+        self.grupo_icms.pRedBCEfet.raiz   = self.grupo_icms.raiz_tag
+        self.grupo_icms.vBCEfet.raiz   = self.grupo_icms.raiz_tag
+        self.grupo_icms.pICMSEfet.raiz   = self.grupo_icms.raiz_tag
+        self.grupo_icms.vICMSEfet.raiz   = self.grupo_icms.raiz_tag
+
+    def get_valor(self):
+        return self._valor_string
+
+    valor = property(get_valor, set_valor)
+
 
 class ICMS(nfe_310.ICMS):
     def __init__(self):
@@ -288,10 +298,10 @@ class ICMS(nfe_310.ICMS):
         self.vBCFCPSTRet = TagDecimal(nome='vBCFCPSTRet', codigo='', tamanho=[1, 13, 1], decimais=[0, 2, 2], raiz='', obrigatorio=False)
         self.pFCPSTRet = TagDecimal(nome='pFCPSTRet'    , codigo='', tamanho=[1,  3, 1], decimais=[0, 2, 4], raiz='', obrigatorio=False)
         self.vFCPSTRet = TagDecimal(nome='vFCPSTRet'    , codigo='', tamanho=[1, 13, 1], decimais=[0, 2, 2], raiz='', obrigatorio=False)
-        self.pRedBCEfet = TagDecimal(nome='pRedBCEfet', codigo='', tamanho=[1, 3, 1], decimais=[0, 2, 4], raiz='')
-        self.vBCEfet = TagDecimal(nome='vBCEfet'    , codigo='', tamanho=[1, 13, 1], decimais=[0, 2, 2], raiz='')
-        self.pICMSEfet = TagDecimal(nome='pICMSEfet', codigo='', tamanho=[1, 3, 1], decimais=[0, 2, 4], raiz='')
-        self.vICMSEfet = TagDecimal(nome='vICMSEfet'    , codigo='', tamanho=[1, 13, 1], decimais=[0, 2, 2], raiz='')
+        self.pRedBCEfet = TagDecimal(nome='pRedBCEfet', codigo='', tamanho=[1, 3, 1], decimais=[0, 4, 2], raiz='')
+        self.vBCEfet = TagDecimal(nome='vBCEfet'    , codigo='', tamanho=[1, 13, 1], decimais=[0, 4, 2], raiz='')
+        self.pICMSEfet = TagDecimal(nome='pICMSEfet', codigo='', tamanho=[1, 3, 1], decimais=[0, 4, 2], raiz='')
+        self.vICMSEfet = TagDecimal(nome='vICMSEfet'    , codigo='', tamanho=[1, 13, 1], decimais=[0, 4, 2], raiz='')
         self.orig = TagCaracter(nome='orig', codigo='', raiz='')
 
         #
