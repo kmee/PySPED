@@ -1454,7 +1454,8 @@ class InfNFe(nfe_310.InfNFe):
         xml += self.exporta.xml
         xml += self.compra.xml
         xml += self.cana.xml
-        xml += self.infresptec.xml
+        if '<CNPJ />' not in self.infresptec.xml:
+            xml += self.infresptec.xml
         xml += '</infNFe>'
         return xml
 
@@ -1599,16 +1600,16 @@ class InfRespTec(XMLNFe):
         self.hashCSRT = TagCaracter(nome='hashCSRT', codigo='ZD09', tamanho=[28, 28], raiz='//NFe/infNFe/infRespTec', obrigatorio=False)
 
     def get_xml(self):
-
         xml = XMLNFe.get_xml(self)
-        xml += '<infRespTec>'
-        xml += self.CNPJ.xml
-        xml += self.xContato.xml
-        xml += self.email.xml
-        xml += self.fone.xml
-        xml += self.idCSRT.xml
-        xml += self.hashCSRT.xml
-        xml += '</infRespTec>'
+        if self.CNPJ:
+            xml += '<infRespTec>'
+            xml += self.CNPJ.xml
+            xml += self.xContato.xml
+            xml += self.email.xml
+            xml += self.fone.xml
+            xml += self.idCSRT.xml
+            xml += self.hashCSRT.xml
+            xml += '</infRespTec>'
         return xml
 
     def set_xml(self, arquivo):
