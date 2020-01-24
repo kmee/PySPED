@@ -118,6 +118,7 @@ class ImpostoDevol(XMLNFe):
     def set_xml(self, arquivo):
         if self._le_xml(arquivo):
             self.pDevol.xml = arquivo
+            self.IPI.xml = arquivo
 
     xml = property(get_xml, set_xml)
 
