@@ -287,7 +287,7 @@ class ICMS(nfe_310.ICMS):
     def __init__(self):
         super(ICMS, self).__init__()
 
-        self.pST = TagDecimal(nome='pST'               , codigo='', tamanho=[1,  3, 1], decimais=[0, 2, 4], raiz='', obrigatorio=False)
+        self.pST = TagDecimal(nome='pST'               , codigo='', tamanho=[1,  3, 1], decimais=[0, 4, 2], raiz='', obrigatorio=False)
         self.vICMSSubstituto = TagDecimal(nome='vICMSSubstituto'          , codigo='', tamanho=[1, 13, 1], decimais=[0, 2, 2], raiz='', obrigatorio=True)
         self.vBCFCP = TagDecimal(nome='vBCFCP'          , codigo='', tamanho=[1, 13, 1], decimais=[0, 2, 2], raiz='', obrigatorio=False)
         self.pFCP = TagDecimal(nome='pFCP'              , codigo='', tamanho=[1,  3, 1], decimais=[0, 2, 4], raiz='', obrigatorio=False)
